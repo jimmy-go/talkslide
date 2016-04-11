@@ -1,0 +1,61 @@
+2 años de gorutinas
+Buenas prácticas y errores frecuentes
+Tags: golang
+# TODO; cambiar orden y filtrar
+
+Angel Del Castillo
+http://github.com/jimmy-go
+
+* Acerca de mi
+
+- Desarrollador autodidacta desde los 15 años (la peor manera de aprender).
+
+Front-end:
+
+- Flex/AS3
+- HTML5
+
+Back-end:
+
+- PHP y .Net
+
+Actualmente haciendo RESTful APIs en Go y MongoDB.
+
+* Go
+
+.link https://golang.org/doc
+
+The Go programming language is an open source project to make *programmers* *more* *productive*
+
+Go is expressive, concise, clean, and efficient. Its *concurrency* mechanisms make it easy to write programs that get the most out of multicore and networked machines, while its novel type system enables flexible and modular program construction. Go *compiles* *quickly* to machine code yet has the convenience of *garbage* *collection* and the power of run-time reflection. It's a fast, *statically* *typed*, compiled language that feels like a dynamically typed, interpreted language.
+
+* Primer error
+
+* 
+Las gorutinas son baratas... pero no lances 50K
+
+.image images/fig1.png 
+
+Y cierralas...
+Recuerda que tu codigo debe responder rapido la mayor cantidad de peticiones posibles. Pero algunos recursos como conexiones a base de datos son escasos.
+
+* Segundo error
+
+* 
+No apliques paradigmas de otros lenguajes.
+
+- Aprende Go idiomatico. [golang.org/doc/effective_go.html]
+- Inicia todo en main.
+- Usar flags hace mas facil saber que esta pasando.
+- El codigo debe leerse como un libro.
+- Cuando generes documentación concentrate en el WHY en lugar del HOW
+- Haz pruebas unitarias y de integración
+- Evita `go run` usa `go build`
+
+* 
+Ejemplo:
+
+.code main.go
+
+* DevOps
+No olvides el monitoreo en producción.
