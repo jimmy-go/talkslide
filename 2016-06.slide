@@ -3,7 +3,7 @@ Buenas prácticas y errores frecuentes
 Tags: golang
 # TODO; cambiar orden y filtrar
 
-http://github.com/jimmy-go
+http://github.com/jimmy-go/talkslide
 
 * Go
 
@@ -13,30 +13,105 @@ The Go programming language is an open source project to make *programmers* *mor
 
 Go is expressive, concise, clean, and efficient. Its *concurrency* mechanisms make it easy to write programs that get the most out of multicore and networked machines, while its novel type system enables flexible and modular program construction. Go *compiles* *quickly* to machine code yet has the convenience of *garbage* *collection* and the power of run-time reflection. It's a fast, *statically* *typed*, compiled language that feels like a dynamically typed, interpreted language.
 
-*  
+* Aprende Go idiomatico
+* 
 
-- No apliques paradigmas de otros lenguajes.
-- Aprende Go idiomatico. [golang.org/doc/effective_go.html]
-- Inicia todo en main.
-- Usar flags hace mas facil saber que esta pasando.
-- El codigo debe leerse como un libro.
-- Cuando generes documentación concentrate en el WHY en lugar del HOW
-- Haz pruebas unitarias y de integración
-- Evita `go run` usa `go build`
-- Las gorutinas son baratas... pero no lances 50K
+.link https://golang.org/doc/effective_go.html
+
+Idiomatic
+.code good.go
+
+Don't do that!
+.code bad.go
+
+* No apliques paradigmas de otros lenguajes (tan pronto)
+* 
+La experiencia te dice que usar frameworks es *el* *modo*.
+
+En Go es preferible usar la libreria estandar ya que es muy potente. En caso de necesitar algo más complejo mira en los toolkits disponibles.
+
+lib > toolkits > framework
+
+.link github.com/gorilla
+
+Los frameworks no son malos. Pero es buena idea que el framework que uses armonice con la filosofia de Go.
+
+* Inicia todo en main
+* 
+
+- Todos los paquetes main que tienen una función main() generan un binario.
+
+.code mymain.go
+
+- init() es llamado antes que main() evita usarlo para iniciar configuraciones.
+
+* Usar flags hace mas facil entender el codigo.
+
+.code flags.go
+
+* Y se puede combinar con las variables de entorno.
+
+    // construir el binario
+    go build -o example1
+-
+
+    // archivo envs_production.sh
+    export PORT=9000
+    export DB_HOST=domain1.com
+    export DB_DATABASE=production_db
+-
+
+    // cargamos las variables de entorno y ejecutamos.
+    source envs_production.sh
+    example1 \
+    -port=$PORT \
+    -db-host=$DB_HOST \
+    -db-database=$DB_DATABASE
 
 * 
-Las gorutinas son baratas... pero no lances 50K
+- Tu codigo debe leerse como un libro.
+    animals/
+        eagle.go
+        eagle_test.go
+        cow.go
+        cow_test.go
+        snake.go
+        snake_test.go
+- Cuando generes documentación concentrate en el WHY en lugar del HOW
+
+.code animals.go
+
+- Haz pruebas unitarias y de integración
+
+* Evita `go run` usa `go build`
+* Las gorutinas son baratas... pero no lances 50K
 
 .image images/fig1.png 
 
 Y cierralas...
 Recuerda que tu codigo debe responder rapido la mayor cantidad de peticiones posibles. Pero algunos recursos como conexiones a base de datos son caros.
 
+* La dulceria del cine
 * 
-Ejemplo:
 
-.code main.go
+.image images/cine_fila_1.jpg
 
-* DevOps
-No olvides el monitoreo en producción.
+* 
+
+.image images/cine_fila_2.jpg
+
+* Los inolvidables
+
+Pruebas de stress y de carga
+
+Metricas de las instancias (prometheus, influxdb, etc...)
+
+Olvida el debugger, usa el log.
+
+Hay muchas herramientas que te ayudan a generar codigo de calidad.
+    - Linters
+    - go vet
+    - go coverage
+    - TODO;
+
+TODO; 
