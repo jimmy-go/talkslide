@@ -1,9 +1,12 @@
 2 años de gorutinas
 Buenas prácticas y errores frecuentes
 Tags: golang
-# TODO; cambiar orden y filtrar
 
+
+Ángel Del Castillo
 http://github.com/jimmy-go/talkslide
+
+jubu201504@gmail.com
 
 * Go
 
@@ -13,7 +16,7 @@ The Go programming language is an open source project to make *programmers* *mor
 
 Go is expressive, concise, clean, and efficient. Its *concurrency* mechanisms make it easy to write programs that get the most out of multicore and networked machines, while its novel type system enables flexible and modular program construction. Go *compiles* *quickly* to machine code yet has the convenience of *garbage* *collection* and the power of run-time reflection. It's a fast, *statically* *typed*, compiled language that feels like a dynamically typed, interpreted language.
 
-* Aprende Go idiomatico
+* Aprende Go idiomático
 * 
 
 .link https://golang.org/doc/effective_go.html
@@ -28,13 +31,13 @@ Don't do that!
 * 
 La experiencia te dice que usar frameworks es *el* *modo*.
 
-En Go es preferible usar la libreria estandar ya que es muy potente. En caso de necesitar algo más complejo mira en los toolkits disponibles.
+En Go es preferible usar la librería estándar ya que es muy potente. En caso de necesitar algo más complejo mira en los toolkits disponibles.
 
 lib > toolkits > framework
 
 .link github.com/gorilla
 
-Los frameworks no son malos. Pero es buena idea que el framework que uses armonice con la filosofia de Go.
+Los frameworks no son malos. Pero es buena idea que el framework que uses armonice con la filosofía de Go.
 
 * Inicia todo en main
 * 
@@ -45,14 +48,14 @@ Los frameworks no son malos. Pero es buena idea que el framework que uses armoni
 
 - init() es llamado antes que main() evita usarlo para iniciar configuraciones.
 
-* Usar flags hace mas facil entender el codigo.
+* Usar flags hace más fácil entender el código.
 
 .code flags.go
 
-* Y se puede combinar con las variables de entorno.
+* Y se pueden combinar con variables de entorno.
 
     // construir el binario
-    go build -o example1
+    go build -race -o example1
 -
 
     // archivo envs_production.sh
@@ -69,7 +72,7 @@ Los frameworks no son malos. Pero es buena idea que el framework que uses armoni
     -db-database=$DB_DATABASE
 
 * 
-- Tu codigo debe leerse como un libro.
+- Tu código debe leerse como un libro.
     animals/
         eagle.go
         eagle_test.go
@@ -77,21 +80,21 @@ Los frameworks no son malos. Pero es buena idea que el framework que uses armoni
         cow_test.go
         snake.go
         snake_test.go
-- Cuando generes documentación concentrate en el WHY en lugar del HOW
+- Cuando generes documentación concentrate en el *WHY* en lugar del *HOW*
 
 .code animals.go
 
-- Haz pruebas unitarias y de integración
+- Haz pruebas unitarias; y benchmarks.
 
 * Evita `go run` usa `go build`
 * Las gorutinas son baratas... pero no lances 50K
 
 .image images/fig1.png 
 
-Y cierralas...
-Recuerda que tu codigo debe responder rapido la mayor cantidad de peticiones posibles. Pero algunos recursos como conexiones a base de datos son caros.
+Y ciérralas...
+Recuerda que tu código debe responder rápido la mayor cantidad de peticiones posibles. Pero algunos recursos como conexiones a base de datos son caros.
 
-* La dulceria del cine
+* La dulcería del cine
 * 
 
 .image images/cine_fila_1.jpg
@@ -100,18 +103,35 @@ Recuerda que tu codigo debe responder rapido la mayor cantidad de peticiones pos
 
 .image images/cine_fila_2.jpg
 
+* Hay muchas herramientas que te ayudan a generar código de calidad.
+
+    - Editor > IDE (IMO)
+    - syntax off (IMO)
+    - go fmt | vet | coverage
+    - golint
+    - godef
+    - YCM
+    - go-fuzz
+    - etc...
+
+.image images/fig2.jpg
+
 * Los inolvidables
 
-Pruebas de stress y de carga
+- Olvida el debugger, usa el log.
 
-Metricas de las instancias (prometheus, influxdb, etc...)
+    Controller : Index : filter users : err [%s] param1 [%v] param2 [%v]
 
-Olvida el debugger, usa el log.
+- Pruebas de stress y de carga
 
-Hay muchas herramientas que te ayudan a generar codigo de calidad.
-    - Linters
-    - go vet
-    - go coverage
-    - TODO;
+- Métricas (prometheus, promdash, influxdb, etc...)
 
-TODO; 
+- git flow
+
+- htop
+
+.image images/pic3.jpg
+
+* Comunidad
+
+.image images/pic2.png
